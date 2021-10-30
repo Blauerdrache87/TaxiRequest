@@ -49,3 +49,10 @@ AddEventHandler('esx_addons_gcphone:call', function(data)
     end
   end
 end)
+
+--and for open requests list you should trigger this event "mani_taxi:openreqs"  (client side)
+--For Example
+
+RegisterCommand("openreqs", function()
+  TriggerEvent("mani_taxi:openreqs")
+end)
