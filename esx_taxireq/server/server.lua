@@ -14,13 +14,6 @@ AddEventHandler('esx:playerLoaded', function(source)
 	end
 end)
 
-RegisterCommand('reqs', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	if xPlayer then
-		TriggerClientEvent('mani_taxi:openreqs', source)
-	end
-end, false)
-
 RegisterServerEvent("mani_taxi:addreq")
 AddEventHandler("mani_taxi:addreq", function(reason)
 	local xPlayer = ESX.GetPlayerFromId(source)
