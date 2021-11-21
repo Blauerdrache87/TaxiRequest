@@ -123,8 +123,8 @@ RegisterCommand('tc', function(source, args)
 			return
 		end
 		local message = table.concat(args, " ")
-		local name = string.gsub(xPlayer.name, "_", " ")
 		local xPlayer = ESX.GetPlayerFromIdentifier(chats[identifier])
+		local name = string.gsub(xPlayer.name, "_", " ")
 		if xPlayer then
 			TriggerClientEvent('chatMessage', source, "[ReQs]", {255, 0, 0}, " ^2" .. name .. ":^0 " .. message)
 			TriggerClientEvent('chatMessage', xPlayer.source, "[ReQs]", {255, 0, 0}, " ^2" .. name .. ":^0 " .. message)
