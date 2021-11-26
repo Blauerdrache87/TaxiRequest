@@ -141,12 +141,15 @@ ESX.RegisterServerCallback('mani_taxi:getReqs', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	if xPlayer.job.name == "taxi" then
 		local status
+		local accept
 		if TableLength(reqs) > 0 then
 			for k,v in pairs(reqs) do
 				if v.status == "open" then
 					status = "❌"
+					accept = "Open"
 				else
 					status = "✔️"
+					accept = "Accepted"
 				end
 				table.insert(treqs, {
 					name		= v.owner.name,
@@ -154,7 +157,9 @@ ESX.RegisterServerCallback('mani_taxi:getReqs', function(source, cb)
 					coord		= v.owner.coord,
 					reqid	    = k,
 					reason		= v.reason,
-					status		= status
+					status		= status,
+					id		    = v.owner.id,
+					accept		= accept,
 				})
 			end
 			cb(treqs)
@@ -169,6 +174,20 @@ end)
 ESX.RegisterServerCallback('mani_taxi:getcoord', function(source, cb, id)
 	local coord = GetEntityCoords(GetPlayerPed(id))
 	cb(coord)
+end)
+
+ESX.RegisterServerCallback('mani_taxi:acceptername', function(source, cb, id)
+	local reqid = id
+	local req = reqs[reqid]
+	local acceptername = req.respond.name
+	cb(acceptername)
+end)
+
+ESX.RegisterServerCallback('esx_taxijob:icname', function(source, cb)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	local name = string.gsub(xPlayer.name, "_", " ")
+	cb(name)
 end)
 
 function canRespond(identifier)
