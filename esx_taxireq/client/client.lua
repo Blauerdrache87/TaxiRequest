@@ -91,6 +91,7 @@ function OpenReqsList()
 						table.insert(elements,{label = "Finish",value = "finish"})
 					end
 					table.insert(elements,{label = "Pin location",value = "loc"})
+                    table.insert(elements,{label = "Khandam Payam",value = "matn"})
 					table.insert(elements,{label = "Call",value = "call"})
 					ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'reqs_list', {
 						title    = "Request",
@@ -106,6 +107,9 @@ function OpenReqsList()
 							menu.close()
 						elseif data2.current.value == 'finish' then
 							TriggerServerEvent("mani_taxi:creqs", data.current.reqid)
+							menu.close()
+                        elseif data2.current.value == 'matn' then
+							ESX.ShowNotification(data.current.text)
 							menu.close()
 						elseif data2.current.value == 'loc' then
 							local coord = data.current.coord
