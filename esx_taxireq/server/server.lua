@@ -183,7 +183,7 @@ ESX.RegisterServerCallback('mani_taxi:acceptername', function(source, cb, id)
 	cb(acceptername)
 end)
 
-ESX.RegisterServerCallback('esx_taxijob:icname', function(source, cb)
+ESX.RegisterServerCallback('mani_taxi:icname', function(source, cb)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local name = string.gsub(xPlayer.name, "_", " ")
